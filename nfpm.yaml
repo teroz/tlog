@@ -1,0 +1,39 @@
+#
+# check https://nfpm.goreleaser.com/configuration for detailed usage
+#
+name: "tlog"
+arch: "amd64"
+platform: "linux"
+version: "v8.2.0"
+section: "default"
+priority: "extra"
+replaces:
+- tlog
+provides:
+- tlog
+depends:
+- libjson-c-dev
+- libsystemd-dev
+recommends:
+- zerod
+maintainer: "@teroz"
+description: |
+  Tlog is a terminal I/O recording and playback package suitable for implementing centralized user session recording.  
+vendor: "zerod.io"
+homepage: "https://zerod.io"
+license: "MIT"
+files:
+  ./src/tlog/.libs/tlog-play: "/usr/local/bin/tlog-play"
+  ./src/tlog/.libs/tlog-rec: "/usr/local/bin/tlog-rec"
+  ./src/tlog/.libs/tlog-rec-session: "/usr/local/bin/tlog-rec-session"
+config_files:
+  ./src/tlog/tlog-play.conf: "/etc/tlog/tlog-play.conf"
+  ./src/tlog/tlog-rec.conf: "/etc/tlog/tlog-rec.conf"
+  ./src/tlog/tlog-rec-session.conf: "/etc/tlog/tlog-rec-session.conf"
+empty_folders:
+- /run/tlog
+overrides:
+  deb:
+    scripts:
+      postinstall: ./scripts/postinstall.sh
+      #preremove: ./scripts/preremove.sh
