@@ -23,17 +23,28 @@ vendor: "zerod.io"
 homepage: "https://zerod.io"
 license: "MIT"
 files:
-  ./src/tlog/.libs/tlog-play: "/usr/local/bin/tlog-play"
-  ./src/tlog/.libs/tlog-rec: "/usr/local/bin/tlog-rec"
-  ./src/tlog/.libs/tlog-rec-session: "/usr/local/bin/tlog-rec-session"
+  ./src/tlog/.libs/tlog-play: "/usr/bin/tlog-play"
+  ./src/tlog/.libs/tlog-rec: "/usr/bin/tlog-rec"
+  ./src/tlog/.libs/tlog-rec-session: "/usr/bin/tlog-rec-session"
+  ./lib/tlog/.libs/libtlog.so.0.0.0: "/usr/lib/libtlog.so.0.0.0"
+  ./lib/tlog/.libs/libtlog.a: "/usr/lib/libtlog.a"
+  ./man/man5/tlog-play.conf.5.gz: "/usr/share/man/man5/tlog-play.conf.5.gz"
+  ./man/man5/tlog-rec.conf.5.gz: "/usr/share/man/man5/tlog-rec.conf.5.gz" 
+  ./man/man5/tlog-rec-session.conf.5.gz: "/usr/share/man/man5/tlog-rec-session.conf.5.gz"
+  ./man/man8/tlog-play.8.gz: "/usr/share/man/man8/tlog-play.8.gz"
+  ./man/man8/tlog-rec.8.gz: "/usr/share/man/man8/tlog-rec.8.gz"
+  ./man/man8/tlog-rec-session.8.gz: "/usr/share/man/man8/tlog-rec-session.8.gz"	
 config_files:
   ./src/tlog/tlog-play.conf: "/etc/tlog/tlog-play.conf"
   ./src/tlog/tlog-rec.conf: "/etc/tlog/tlog-rec.conf"
   ./src/tlog/tlog-rec-session.conf: "/etc/tlog/tlog-rec-session.conf"
+  ./src/tlog/tlog-play.default.conf: "/usr/share/tlog/tlog-play.default.conf"
+  ./src/tlog/tlog-rec.default.conf: "/usr/share/tlog/tlog-rec.default.conf"
+  ./src/tlog/tlog-rec-session.default.conf: "/usr/share/tlog/tlog-rec-session.default.conf"
 empty_folders:
 - /run/tlog
 overrides:
   deb:
     scripts:
       postinstall: ./scripts/postinstall.sh
-      #preremove: ./scripts/preremove.sh
+      postremove: ./scripts/postremove.sh
